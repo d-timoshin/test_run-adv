@@ -76,7 +76,8 @@ def test_carpet_demonstration_home(browser):
             logger.info("Форма отправлена")
 
         with allure.step("Возврат в каталог"):
-            wait_and_click(browser, '//a[text()="Перейти в каталог"]')
+            item = WebDriverWait(browser, 30).until(EC.element_to_be_clickable((By.XPATH, '//a[text()="Перейти в каталог"]')))
+            browser.execute_script("arguments[0].click();", item)
             logger.info("Осуществлен возврат в каталог")
 
         logger.info("Демонстрация ковров в вашем интерьере. Заявка отправлена")
