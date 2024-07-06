@@ -11,7 +11,7 @@ from allure_commons.types import AttachmentType
 @pytest.fixture
 def browser():
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
+    #chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
@@ -69,8 +69,8 @@ def test_carpet_demonstration_home(browser):
             logger.info("Форма отправлена")
 
         with allure.step("Возврат в каталог"):
-            item = WebDriverWait(browser, 30).until(EC.element_to_be_clickable((By.XPATH, '//a[text()="Перейти в каталог"]')))
-            browser.execute_script("arguments[0].click();", item)
+            item = WebDriverWait(browser, 30).until(EC.element_to_be_clickable((By.XPATH, '//a[text()="Перейти в каталог"]'))).click()
+           # browser.execute_script("arguments[0].click();", item)
             logger.info("Осуществлен возврат в каталог")
 
         logger.info("Демонстрация ковров в вашем интерьере. Заявка отправлена")
@@ -84,3 +84,5 @@ def test_carpet_demonstration_home(browser):
 
 if __name__ == "__main__":
     pytest.main([__file__, '--alluredir', './allure-results'])
+
+
