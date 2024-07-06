@@ -65,11 +65,13 @@ def test_carpet_demonstration_home(browser):
             logger.info("Форма заполнена")
 
         with allure.step("Отправка формы"):
-            wait_and_click(browser, '//button[text()="отправить"]')
+            item = WebDriverWait(browser, 30).until(EC.element_to_be_clickable((By.XPATH, '//button[text()="отправить"]'))).click()
+            #wait_and_click(browser, '//button[text()="отправить"]')
             logger.info("Форма отправлена")
 
         with allure.step("Возврат в каталог"):
-            wait_and_click(browser, '//a[text()="Перейти в каталог"]')
+            item = WebDriverWait(browser, 30).until(EC.element_to_be_clickable((By.XPATH, '//a[text()="Перейти в каталог"]'))).click()
+            #wait_and_click(browser, '//a[text()="Перейти в каталог"]')
             logger.info("Осуществлен возврат в каталог")
 
         logger.info("Демонстрация ковров в вашем интерьере. Заявка отправлена")
