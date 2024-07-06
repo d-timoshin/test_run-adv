@@ -19,9 +19,10 @@ def browser():
     yield driver
     driver.quit()  # Закрываем браузер после теста
 
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
 
 def wait_and_click(browser, xpath, timeout=30):
     element = WebDriverWait(browser, timeout).until(EC.element_to_be_clickable((By.XPATH, xpath)))
@@ -64,13 +65,11 @@ def test_carpet_demonstration_home(browser):
             logger.info("Форма заполнена")
 
         with allure.step("Отправка формы"):
-            item = WebDriverWait(browser, 30).until(EC.element_to_be_clickable((By.XPATH, '//button[text()="отправить"]'))).click()
-            #browser.execute_script("arguments[0].click();", item)
+            wait_and_click(browser, '//button[text()="отправить"]')
             logger.info("Форма отправлена")
 
         with allure.step("Возврат в каталог"):
-            item = WebDriverWait(browser, 30).until(EC.element_to_be_clickable((By.XPATH, '//a[text()="Перейти в каталог"]'))).click()
-           # browser.execute_script("arguments[0].click();", item)
+            wait_and_click(browser, '//a[text()="Перейти в каталог"]')
             logger.info("Осуществлен возврат в каталог")
 
         logger.info("Демонстрация ковров в вашем интерьере. Заявка отправлена")
@@ -84,5 +83,3 @@ def test_carpet_demonstration_home(browser):
 
 if __name__ == "__main__":
     pytest.main([__file__, '--alluredir', './allure-results'])
-
-
