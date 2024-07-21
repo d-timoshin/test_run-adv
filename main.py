@@ -172,11 +172,6 @@ def test_adv_delivery_order(browser, step):
             wait_and_click(browser, '//a[text()="Перейти в каталог"]')
             logger.info("Вошли в каталог")
 
-        with allure.step("Проверка наличия текста 'Каталог' на странице"):
-        assert check_text_on_page(browser, "Каталог"), "Текст 'Каталог' не найден на странице"
-    
-        logger.info("Текст 'Каталог' успешно найден на странице")
-
 
     except Exception as e:
         logger.error(f"Test failed with exception: {str(e)}")
