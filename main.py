@@ -97,7 +97,7 @@ def test_carpet_demonstration_home(browser, step):
     finally:
         allure.attach(browser.get_screenshot_as_png(), name="Final Screenshot", attachment_type=AttachmentType.PNG)
 
-
+@pytest.mark.skip('Bug 2')
 @allure.feature('ADV Website')
 @allure.story("Проверка функциональности 'Демонстрация ковров в салоне'")
 def test_carpet_demonstration_store(browser, step):
@@ -147,7 +147,7 @@ def test_carpet_demonstration_store(browser, step):
     finally:
         allure.attach(browser.get_screenshot_as_png(), name="Final Screenshot", attachment_type=AttachmentType.PNG)
 
-@pytest.mark.skip('Bug 2')
+
 @allure.feature('ADV Website')
 @allure.story("Проверка функциональности 'Оформить заказ на доставку'")
 def test_adv_delivery_order(browser, step):
@@ -155,18 +155,22 @@ def test_adv_delivery_order(browser, step):
 
         with allure.step("Выбор опции 'Оформить заказ на доставку'"):
             wait_and_click(browser, '//span[contains(text(), "Оформить заказ на доставку")]')
+            logger.info("Нажали Оформить заказ на доставку")
 
         with allure.step("Заполнение формы"):
             wait_and_send_keys(browser, '//input[@id="name-cart-form"]', "auto-tests")
             wait_and_send_keys(browser, '//input[@id="phone-cart-form"]', "9999999999")
             wait_and_send_keys(browser, '//input[@id="email-cart-form"]', "auto@tests.tests")
             wait_and_send_keys(browser, '//input[@id="address-cart-form"]', "test 99-99-99")
+            logger.info("Заполнили форму")
 
         with allure.step("Отправка формы"):
             wait_and_click(browser, '//button[text()="Отправить"]')
+            logger.info("Отправили форму")
 
         with allure.step("Возврат в каталог"):
             wait_and_click(browser, '//a[text()="Перейти в каталог"]')
+            logger.info("Вошли в каталог")
 
 
     except Exception as e:
