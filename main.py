@@ -165,12 +165,17 @@ def test_adv_delivery_order(browser, step):
             logger.info("Заполнили форму")
 
         with allure.step("Отправка формы"):
-            wait_and_click(browser, '//button[text()="Отправить"]')
+            wait_and_click(browser, '//button[text()="отправить"]')
             logger.info("Отправили форму")
 
         with allure.step("Возврат в каталог"):
             wait_and_click(browser, '//a[text()="Перейти в каталог"]')
             logger.info("Вошли в каталог")
+
+        with allure.step("Проверка наличия текста 'Каталог' на странице"):
+        assert check_text_on_page(browser, "Каталог"), "Текст 'Каталог' не найден на странице"
+    
+        logger.info("Текст 'Каталог' успешно найден на странице")
 
 
     except Exception as e:
