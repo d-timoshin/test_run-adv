@@ -8,15 +8,6 @@ import allure
 import logging
 from allure_commons.types import AttachmentType
 
-import pytest
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import logging
-import allure
-from allure_commons.types import AttachmentType
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -97,7 +88,7 @@ def test_carpet_demonstration_home(browser, step):
     finally:
         allure.attach(browser.get_screenshot_as_png(), name="Final Screenshot", attachment_type=AttachmentType.PNG)
 
-@pytest.mark.skip('Bug 2')
+
 @allure.feature('ADV Website')
 @allure.story("Проверка функциональности 'Демонстрация ковров в салоне'")
 def test_carpet_demonstration_store(browser, step):
@@ -124,7 +115,7 @@ def test_carpet_demonstration_store(browser, step):
             wait_and_click(browser, '//button[text()="Выбрать салон"]')
 
         with allure.step("Выбрать первый салон из списка"):
-            wait_and_click(browser, '//*[@id="drawer"]/div[1]/div/div/div/div[2]/div/ul/li[2]/div/svg')
+            wait_and_click(browser, '//*[@id="drawer"]/div[1]/div/div/div/div[2]/div/ul/li[1]/div/div/div[1]')
 
         with allure.step("Нажать кнопку 'Выбрать салон'"):
             wait_and_click(browser, '//button[text()="Выбрать салон"]')
@@ -147,7 +138,7 @@ def test_carpet_demonstration_store(browser, step):
     finally:
         allure.attach(browser.get_screenshot_as_png(), name="Final Screenshot", attachment_type=AttachmentType.PNG)
 
-
+@pytest.mark.skip('Bug 2')
 @allure.feature('ADV Website')
 @allure.story("Проверка функциональности 'Оформить заказ на доставку'")
 def test_adv_delivery_order(browser, step):
